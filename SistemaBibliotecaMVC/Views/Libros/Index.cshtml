@@ -1,0 +1,118 @@
+@model IEnumerable<SistemaBibliotecaMVC.Models.LibroViewModel>
+@{
+    ViewData["Title"] = ViewData["Title"] ?? "Listado de libros";
+}
+
+<style>
+    .list-header h2 {
+        color: #3b2a1a;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .btn-primary {
+        background-color: #3b2a1a;
+        border-color: #3b2a1a;
+        font-weight: 600;
+    }
+
+        .btn-primary:hover {
+            background-color: #5a4128;
+            border-color: #5a4128;
+        }
+
+    .alert-info {
+        background-color: #f4f1ea;
+        border-color: #e0d6c3;
+        color: #3b2a1a;
+    }
+
+    .alert-success {
+        background-color: #e9f0e3;
+        border-color: #cfe0c1;
+        color: #3b5c1e;
+    }
+
+    .book-table {
+        background-color: #ffffff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+        .book-table thead {
+            background-color: #3b2a1a;
+        }
+
+            .book-table thead th {
+                color: #ffffff;
+                font-weight: 600;
+                border: none;
+            }
+
+        .book-table tbody tr:nth-of-type(odd) {
+            background-color: #f8f5ef;
+        }
+
+        .book-table tbody td {
+            vertical-align: middle;
+            color: #4a3d2c;
+        }
+
+    .btn-outline-primary {
+        color: #3b2a1a;
+        border-color: #3b2a1a;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #3b2a1a;
+            border-color: #3b2a1a;
+            color: #ffffff;
+        }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3 list-header">
+    <h2>@ViewData["Title"]</h2>
+    <a class="btn btn-primary" href="/biblioteca/libros/crear">Nuevo libro</a>
+</div>
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-info">@ViewBag.Mensaje</div>
+}
+
+@if (TempData["Exito"] != null)
+{
+    <div class="alert alert-success">@TempData["Exito"]</div>
+}
+
+<table class="table table-striped book-table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Año de publicación</th>
+            <th>Categoría</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var libro in Model)
+            {
+                <tr>
+                    <td>@libro.id</td>
+                    <td>@libro.Title</td>
+                    <td>@libro.Author</td>
+                    <td>@libro.Release </td>
+                    <td>@libro.Category</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-primary" href="/biblioteca/libros/detalle/@libro.id">Ver detalle</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

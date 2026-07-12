@@ -1,0 +1,70 @@
+@model SistemaBibliotecaMVC.Models.LibroViewModel
+
+@{
+    ViewData["Title"] = ViewData["Title"] ?? "Detalle";
+}
+
+<style>
+    .book-detail-card {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border: 1px solid #e0d6c3;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        overflow: hidden;
+    }
+
+    .book-detail-header {
+        background-color: #3b2a1a;
+        padding: 1.5rem 2rem;
+    }
+
+        .book-detail-header .card-title {
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .book-detail-header .card-subtitle {
+            color: #d8cdb8 !important;
+        }
+
+    .book-detail-body {
+        padding: 1.5rem 2rem;
+    }
+
+        .book-detail-body .card-text {
+            color: #4a3d2c;
+            margin-bottom: 0.75rem;
+        }
+
+        .book-detail-body strong {
+            color: #3b2a1a;
+        }
+
+    .btn-secondary {
+        background-color: #e0d6c3;
+        border-color: #e0d6c3;
+        color: #3b2a1a;
+        font-weight: 600;
+    }
+
+        .btn-secondary:hover {
+            background-color: #d1c4a8;
+            border-color: #d1c4a8;
+            color: #3b2a1a;
+        }
+</style>
+
+<div class="book-detail-card">
+    <div class="book-detail-header">
+        <h3 class="card-title">@Model.Title</h3>
+        <h6 class="card-subtitle mb-0">@Model.Author</h6>
+    </div>
+    <div class="book-detail-body">
+        <p class="card-text"><strong>Año de publicación:</strong> @Model.Release</p>
+        <p class="card-text"><strong>Categoría:</strong> @Model.Category</p>
+        <a class="btn btn-secondary mt-2" href="/biblioteca/libros">Volver al listado</a>
+    </div>
+</div>
